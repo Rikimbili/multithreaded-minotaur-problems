@@ -9,11 +9,11 @@ using namespace std;
 const int N = 5; // Number of guests
 
 mutex m;
-condition_variable cv;
-queue<int> guests;
-bool showroom_busy = false;
-int guests_counter = 0;
-thread t[N];
+condition_variable cv; // Condition variable to synchronize guests
+queue<int> guests; // Queue to keep track of guests waiting to see the vase
+bool showroom_busy = false; // Flag to indicate if the showroom is busy
+int guests_counter = 0; // Counter to keep track of number of guests that have seen the vase
+thread t[N]; // Threads for guests
 
 void guest(int id) {
     unique_lock<mutex> lock(m);
